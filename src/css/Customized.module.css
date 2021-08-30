@@ -1,0 +1,19 @@
+
+.telActionRevise {
+  width: 100px;
+  background: #aaf0f0;
+}
+
+.telActionDel {
+  width: 100px;
+  background: #f0aaf0;
+}
+
+.addTel {
+  border-radius: 50%;
+  line-height: 25px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  background: #aaffaa;
+}
