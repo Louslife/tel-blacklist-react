@@ -5,16 +5,40 @@ import "../css/basic.css";
 
 function TelBlacklist() {
 
+  const data =
+    [
+      {
+        telId: "1",
+        telName: "小王",
+        tel: "09",
+      }, {
+        telId: "2",
+        telName: "小李",
+        tel: "09",
+      }, {
+        telId: "3",
+        telName: "小葉",
+        tel: "09",
+      }, {
+        telId: "4",
+        telName: "小玉",
+        tel: "09",
+      }, {
+        telId: "5",
+        telName: "小吳",
+        tel: "09",
+      }
+    ]
+
   return (
     <>
       <header>
-        電話黑名單
+        <h1>電話黑名單</h1>
       </header>
 
       <nav>
-        seach bar
-        <input type="text" />
-        <i>放大鏡</i>
+        <h5>seach bar</h5>
+        <div><input type="text" /><i>放大鏡</i></div>
       </nav>
 
       <div className={styles.addTel}>+</div>
@@ -24,55 +48,19 @@ function TelBlacklist() {
           <div className="col">id</div>
           <div className="col">name</div>
           <div className="col">電話</div>
-          <div className="col ">
-            行動
-          </div>
+          <div className="col">行動</div>
         </div>
-        <div className="row">
-          <div className="col tel-id">1</div>
-          <div className="col tel-name">小王</div>
-          <div className="col tel-action">0911111111</div>
-          <div className="col tel-action">
-            <div className={styles.telActionRevise}><i>修改</i></div>
-            <div className={styles.telActionDel}><i>刪除</i></div>
+        {data.map((obj, index) =>
+          <div className="row">
+            <div className="col tel-id">{obj.telId}</div>
+            <div className="col tel-name">{obj.telName}</div>
+            <div className="col tel">{obj.tel}</div>
+            <div className="col tel-action">
+              <div className={styles.telActionRevise}><i>修改</i></div>
+              <div className={styles.telActionDel}><i>刪除</i></div>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col tel-id">2</div>
-          <div className="col tel-name">小李</div>
-          <div className="col tel-action">0922222222</div>
-          <div className="col tel-action">
-            <div className={styles.telActionRevise}><i>修改</i></div>
-            <div className={styles.telActionDel}><i>刪除</i></div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col tel-id">3</div>
-          <div className="col tel-name">小葉</div>
-          <div className="col tel-action">09333333333</div>
-          <div className="col tel-action">
-            <div className={styles.telActionRevise}><i>修改</i></div>
-            <div className={styles.telActionDel}><i>刪除</i></div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col tel-id">4</div>
-          <div className="col tel-name">小玉</div>
-          <div className="col tel-action">09444444444</div>
-          <div className="col tel-action">
-            <div className={styles.telActionRevise}><i>修改</i></div>
-            <div className={styles.telActionDel}><i>刪除</i></div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col tel-id">5</div>
-          <div className="col tel-name">小吳</div>
-          <div className="col tel-action">09555555555</div>
-          <div className="col tel-action">
-            <div className={styles.telActionRevise}><i>修改</i></div>
-            <div className={styles.telActionDel}><i>刪除</i></div>
-          </div>
-        </div>
+        )}
       </main>
     </>
   );
