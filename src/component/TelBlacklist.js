@@ -4,36 +4,43 @@ import styles from '../css/Customized.module.css';
 import "../css/basic.css";
 
 function TelBlacklist() {
-  // 電話名單有 黑名單 與 白名單
-  // 狀態：telList(藉由 API 撈回 list)、IsUpdate、IsBlack、isAdd
 
   const data = [
     {
       telId: "1",
       telName: "小王",
       tel: "09",
+      isBlack: false,
+      date: ""
     }, {
       telId: "2",
       telName: "小李",
       tel: "09",
+      isBlack: false,
+      date: ""
     }, {
       telId: "3",
       telName: "小葉",
       tel: "09",
+      isBlack: false,
+      date: ""
     }, {
       telId: "4",
       telName: "小玉",
       tel: "09",
+      isBlack: false,
+      date: ""
     }, {
       telId: "5",
       telName: "小吳",
       tel: "09",
+      isBlack: false,
+      date: ""
     }
   ]
 
   const [telList, setTelList] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
-  // const [isBlack, setIsBlack] = useState(true);
   const [isAdd, setIsAdd] = useState(false);
 
   const [newTel, setNewTel] = useState("");
@@ -61,7 +68,6 @@ function TelBlacklist() {
     } else {
       setIsAdd(true)
     }
-
   }
 
   const hendleSaveTel = () => {
@@ -79,7 +85,8 @@ function TelBlacklist() {
 
   const hendleUpdateTel = () => {
     // 修改一筆電話
-    // 改變一筆電話的狀態(唯讀->修改)
+    // 改變一筆電話的狀態(唯讀->修改) 
+    // 使用 id 作為索引
     // 驗證被修改的電話是否合法
     // cell Update API
     // 修改結束之後可以使用點選外框或者 Enter 來存擋
@@ -90,9 +97,16 @@ function TelBlacklist() {
     }
   }
 
-  const hendleDeleteTel = () => {
+  const hendleDeleteTel = (id) => {
     // cell Delete API
     // 刪除一筆電話
+    // 使用 id 作為索引
+    alert("刪除一筆電話")
+    const removeItem = telList.filter((telList) => {
+      return telList.telId !== id;
+    })
+    console.log(removeItem)
+    setTelList(removeItem)
   }
 
   const hendleChangeType = () => {
@@ -143,31 +157,29 @@ function TelBlacklist() {
           <div className="col">電話</div>
           <div className="col">行動</div>
         </div>
-        
+
         {(telList ? telList.map((obj, index) =>
-          <div className="row" key={index}>
-            {isUpdate ? <div className="col"><input type="text" value={obj.telId}/></div> : <div className="col tel-id"> {obj.telId}</div>}
-            {isUpdate ? <div className="col"><input type="text" value={obj.telName}/></div> : <div className="col tel-name"> {obj.telName}</div>}
-            {isUpdate ? <div className="col"><input type="text" value={obj.tel}/></div> : <div className="col tel"> {obj.tel}</div>}
+          <div className="row" key={obj.telId}>
+            {isUpdate ? <div className="col"><input type="text" value={obj.telId} /></div> : <div className="col tel-id"> {obj.telId}</div>}
+            {isUpdate ? <div className="col"><input type="text" value={obj.telName} /></div> : <div className="col tel-name"> {obj.telName}</div>}
+            {isUpdate ? <div className="col"><input type="text" value={obj.tel} /></div> : <div className="col tel"> {obj.tel}</div>}
             <div className="col tel-action">
               <div className={styles.telActionRevise}
                 onClick={hendleUpdateTel}><i>修改</i></div>
-              <div className={styles.telActionDel}><i>刪除</i></div>
+              <div className={styles.telActionDel}
+                onClick={() => hendleDeleteTel(obj.telId)}><i>刪除</i></div>
             </div>
           </div>) : "Get No Data"
         )}
 
-        
+
 
         {isAdd ? <div className="row">
           <div className="col"><input name="addId" type="text"
-            // value={newId}
             onChange={getIdInputValue} /></div>
           <div className="col"><input name="addUser" type="text"
-            // value={newUser}
             onChange={getUserInputValue} /></div>
           <div className="col"><input name="addtel" type="text"
-            // value={newTel}
             onChange={getTelInputValue} /></div>
           <div className="col tel-action">
             <div className={styles.telActionDel}
