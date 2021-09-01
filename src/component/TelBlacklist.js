@@ -41,6 +41,7 @@ function TelBlacklist() {
 
   const [telList, setTelList] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [currentTel, setCurrentTel] = useState({})
   const [isAdd, setIsAdd] = useState(false);
 
   const [newTel, setNewTel] = useState("");
@@ -83,30 +84,41 @@ function TelBlacklist() {
     setTelList(newList)
   }
 
-  const hendleUpdateTel = () => {
+  const hendleSaveTelUpdate = (tel) => {
+    // 儲存一筆被修改的電話
+    alert("刪除修改電話")
+    console.log(tel)
+    // setTelList(newList)
+  }
+
+  const hendleUpdateTel = (tel) => {
     // 修改一筆電話
-    // 改變一筆電話的狀態(唯讀->修改) 
-    // 使用 id 作為索引
+    // v1.改變一筆電話的狀態(唯讀->能修改) 顯示 input (只顯示被修改的資料)
+    // 2.讓使用者可以修改 input 的內容
+    // 3.取得被修改的內容 set 回來
+    // 4.刪除舊的 新增新的
+    // 5.依照改變的資料顯示畫面
+
+    // 如果是先刪除掉舊的資料 在新增新的一模一樣的資料 就能達到修改的目的
+
     // 驗證被修改的電話是否合法
     // cell Update API
-    // 修改結束之後可以使用點選外框或者 Enter 來存擋
-    if (isUpdate) {
-      setIsUpdate(false)
-    } else {
-      setIsUpdate(true)
-    }
+
+    setIsUpdate(true);
+    setCurrentTel(tel)
+    console.log(currentTel)
+
   }
 
   const hendleDeleteTel = (id) => {
     // cell Delete API
-    // 刪除一筆電話
     // 使用 id 作為索引
     alert("刪除一筆電話")
-    const removeItem = telList.filter((telList) => {
+    const newList = telList.filter((telList) => {
       return telList.telId !== id;
     })
-    console.log(removeItem)
-    setTelList(removeItem)
+    console.log(newList)
+    setTelList(newList)
   }
 
   const hendleChangeType = () => {
@@ -116,11 +128,6 @@ function TelBlacklist() {
     // 黑名單變成白名單
   }
 
-  const getTelInputValue = (e) => {
-
-    setNewTel(e.target.value);
-    console.log(e.target.value)
-  }
   const getIdInputValue = (e) => {
 
     setNewId(e.target.value);
@@ -129,6 +136,12 @@ function TelBlacklist() {
   const getUserInputValue = (e) => {
 
     setNewUser(e.target.value);
+    console.log(e.target.value)
+  }
+
+  const getTelInputValue = (e) => {
+
+    setNewTel(e.target.value);
     console.log(e.target.value)
   }
 
@@ -159,21 +172,29 @@ function TelBlacklist() {
         </div>
 
         {(telList ? telList.map((obj, index) =>
-          <div className="row" key={obj.telId}>
-            {isUpdate ? <div className="col"><input type="text" value={obj.telId} /></div> : <div className="col tel-id"> {obj.telId}</div>}
-            {isUpdate ? <div className="col"><input type="text" value={obj.telName} /></div> : <div className="col tel-name"> {obj.telName}</div>}
-            {isUpdate ? <div className="col"><input type="text" value={obj.tel} /></div> : <div className="col tel"> {obj.tel}</div>}
-            <div className="col tel-action">
-              <div className={styles.telActionRevise}
-                onClick={hendleUpdateTel}><i>修改</i></div>
-              <div className={styles.telActionDel}
-                onClick={() => hendleDeleteTel(obj.telId)}><i>刪除</i></div>
+          <>
+            <div className="row" key={obj.telId}>
+              <div className="col tel-id"> {obj.telId}</div>
+              <div className="col tel-name"> {obj.telName}</div>
+              <div className="col tel"> {obj.tel}</div>
+              <div className="col tel-action">
+                <div className={styles.telActionRevise}
+                  onClick={() => hendleUpdateTel(obj)}><i>修改</i></div>
+                <div className={styles.telActionDel}
+                  onClick={() => hendleDeleteTel(obj.telId)}><i>刪除</i></div>
+              </div>
             </div>
-          </div>) : "Get No Data"
+            {(isUpdate && currentTel === obj ?
+              <div className="row">
+                <div className="col"><input onChange={getIdInputValue} type="text" placeholder="在這邊寫新內容" /></div>
+                <div className="col"><input onChange={getUserInputValue} type="text" placeholder="在這邊寫新內容" /></div>
+                <div className="col"><input onChange={getTelInputValue} type="text" placeholder="在這邊寫新內容" /></div>
+                <div className={styles.telActionDel}
+                  onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
+              </div> : "")}
+          </>
+        ) : "Get No Data"
         )}
-
-
-
         {isAdd ? <div className="row">
           <div className="col"><input name="addId" type="text"
             onChange={getIdInputValue} /></div>
