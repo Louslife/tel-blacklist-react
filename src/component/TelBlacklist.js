@@ -84,6 +84,40 @@ function TelBlacklist() {
     }
   }
 
+  const hendleFilterTel = (e) => {
+    // 點選名單按鈕
+    const btnType = e.target.name
+    switch (btnType) {
+      case "black":
+        const newTelListBlack = telList.filter((tel) => {
+          return tel.isBlack
+        })
+        setTelList(newTelListBlack)
+        console.log("click button is black.")
+        break;
+
+      case "white":
+        const newTelListWhite = telList.filter((tel) => {
+          return !tel.isBlack
+        })
+        setTelList(newTelListWhite)
+        console.log("click button is white.")
+        break;
+
+      case "all":
+        const newTelListAll = telList.filter((tel) => {
+          return true
+        })
+        setTelList(newTelListAll)
+        console.log("click button is all.")
+        break;
+
+      default:
+        console.log("no button type.")
+        break;
+    }
+  }
+
   const hendleCreateTel = () => {
     // 新增一筆電話
     // IsAdd === true 時 input會出現
@@ -119,7 +153,6 @@ function TelBlacklist() {
 
     // 驗證被修改的電話是否合法
     // cell Update API
-
     if (isUpdate) {
       setIsUpdate(false)
     } else {
@@ -207,9 +240,11 @@ function TelBlacklist() {
               onClick={hendleSeachTel}>放大鏡</i>
           </div>
         </from>
-        <button>黑名單</button>
-        <button>白名單</button>
-        <button>顯示全部</button>
+        <div className="btn-warp">
+          <button name="black" onClick={hendleFilterTel}>黑名單</button>
+          <button name="white" onClick={hendleFilterTel}>白名單</button>
+          <button name="all" onClick={hendleFilterTel}>顯示全部</button>
+        </div>
       </nav>
 
       <div className={styles.addTel}
