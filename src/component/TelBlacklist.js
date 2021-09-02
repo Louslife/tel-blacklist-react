@@ -9,31 +9,31 @@ function TelBlacklist() {
     {
       telId: "1",
       telName: "小王",
-      tel: "09",
+      tel: "091111111",
       isBlack: false,
       date: ""
     }, {
       telId: "2",
       telName: "小李",
-      tel: "09",
+      tel: "0922222222",
       isBlack: false,
       date: ""
     }, {
       telId: "3",
       telName: "小葉",
-      tel: "09",
+      tel: "0933333333",
       isBlack: false,
       date: ""
     }, {
       telId: "4",
       telName: "小玉",
-      tel: "09",
+      tel: "0944444444",
       isBlack: false,
       date: ""
     }, {
       telId: "5",
       telName: "小吳",
-      tel: "09",
+      tel: "0955555555",
       isBlack: false,
       date: ""
     }
@@ -48,6 +48,9 @@ function TelBlacklist() {
   const [newId, setNewId] = useState("");
   const [newUser, setNewUser] = useState("");
 
+  const [searchType, setSearchType] = useState("")
+  const [searchWord, setSearchWord] = useState("")
+
   // 拉取資料時將程式碼包覆於 useEffect 在 render 之後執行一次
   useEffect(() => {
     // 在這裏拉取資料
@@ -57,7 +60,45 @@ function TelBlacklist() {
   const hendleSeachTel = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
-    // 打超過兩個字才能搜尋
+    console.log(searchType)
+    switch (searchType) {
+
+      case 'nameSeach':
+        console.log(telList)
+        const newTelListName = telList.filter((tel) => {
+          console.log(searchWord)
+          return tel.telName.includes(searchWord)
+        })
+        setTelList(newTelListName)
+        console.log('search type is name.');
+        break;
+
+      case 'telSeach':
+
+        console.log(telList)
+        const newTelListTel = telList.filter((tel) => {
+          console.log(searchWord)
+          return tel.tel.includes(searchWord)
+        })
+        setTelList(newTelListTel)
+        console.log('search type is phone.');
+
+        break;
+      default:
+        console.log(`no type.`);
+    }
+  }
+
+  const getSeachWord = (e) => {
+
+    setSearchWord(e.target.value);
+    console.log(e.target.value)
+
+  }
+  const getSeachType = (e) => {
+
+    setSearchType(e.target.value)
+    console.log(searchType)
   }
 
   const hendleCreateTel = () => {
@@ -156,7 +197,17 @@ function TelBlacklist() {
 
       <nav>
         <h5>seach bar</h5>
-        <div><input type="text" /><i>放大鏡</i></div>
+        <from className="seach-wrap">
+          <div class="input-group">
+            <select name="category" id="category"
+              onChange={getSeachType}>
+              <option value="nameSeach">姓名</option>
+              <option value="telSeach">電話</option>
+            </select>
+            <input type="text" placeholder="關鍵字" onChange={getSeachWord} /><i
+              onClick={hendleSeachTel}>放大鏡</i>
+          </div>
+        </from>
         <button>黑名單</button>
         <button>白名單</button>
         <button>顯示全部</button>
