@@ -1,0 +1,32 @@
+.subCategory {
+  text-align: right;
+  width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.subCategoryItem {
+  display: inline-block;
+  width: 4rem;
+  height: 2rem;
+  background: #ccc;
+  border-radius: 0;
+}
+
+.subCategoryItem:first-child:active,
+.subCategoryItem:first-child:hover{
+background: #0496D2;
+color: #fff;
+}
+
+.subCategoryItem:nth-child(2):active,
+.subCategoryItem:nth-child(2):hover{
+background: #D36565;
+color: #fff;
+}
+
+.subCategoryItem:last-child:active,
+.subCategoryItem:last-child:hover{
+background: #EFEFEF;
+color: black;
+}

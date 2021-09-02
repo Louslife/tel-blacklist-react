@@ -227,56 +227,64 @@ function TelBlacklist() {
   return (
     <>
       <header>
-        <h1>電話黑名單</h1>
+        <h1>黑白名單管理</h1>
       </header>
 
-      <nav>
-        <h5>seach bar</h5>
-        <from className="seach-wrap">
-          <div class="input-group">
-            <select name="category" id="category"
+      <nav className="container">
+        <from className={SearchBar.seachWrap}>
+          <div className={SearchBar.inputGroup}>
+            <select className={SearchBar.select} name="category" id="category"
               onChange={getSeachType}>
               <option value="nameSeach">姓名</option>
               <option value="telSeach">電話</option>
             </select>
-            <input type="text" placeholder="關鍵字" onChange={getSeachWord} /><i
-              onClick={hendleSeachTel}>放大鏡</i>
+            <input className={SearchBar.input} type="text" placeholder="關鍵字" onChange={getSeachWord} />
+            <div className={SearchBar.icon}
+              onClick={hendleSeachTel}></div>
           </div>
         </from>
       </nav>
+      <div className={Btn.addWarp}>
+        <div className={Btn.addTel}
+          onClick={hendleCreateTel}>+
+        </div>
+        <span>新增</span>
+      </div>
 
-      <div className={Btn.addTel}
-        onClick={hendleCreateTel}>+</div>
-        
-      <div className="subCategory">
-        <button name="black" onClick={hendleFilterTel}>黑名單</button>
-        <button name="white" onClick={hendleFilterTel}>白名單</button>
-        <button name="all" onClick={hendleFilterTel}>顯示全部</button>
+      <div className={SubCategory.subCategory}>
+        <button name="black" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>全部</button>
+        <button name="white" className={SubCategory.subCategoryItem}  onClick={hendleFilterTel}>黑名單</button>
+        <button name="all" className={SubCategory.subCategoryItem}  onClick={hendleFilterTel}>白名單</button>
       </div>
 
       <main className="container">
-        <div className="row">
-          <div className="col">id</div>
-          <div className="col">名字</div>
-          <div className="col">電話</div>
-          <div className="col">行動</div>
-          <div className="btn-warp">
+        <div className={Crad.cradWrapCaption} >
+          <div className="row">
+            <div className="col">項次</div>
+            <div className="col">名字</div>
+            <div className="col">電話</div>
+            <div className="col">行動</div>
+            <div className="btn-warp">
+            </div>
           </div>
         </div>
+
         {(telList ? telList.map((obj, index) =>
           <>
-            <div className="cradWrap caption" key={obj.telId}>
+            <div className={Crad.cradWrap} key={obj.telId}>
               <div className="row card">
-                <div className="cradId">{obj.telId}</div>
-                <div className="cradName">{obj.telName}</div>
-                <div className="cradTel">{obj.tel}</div>
-                <div className={Btn.btnWarp}>
-                  <div className={Btn.telActionRevise}
-                    onClick={() => hendleUpdateTel(obj)}
-                  >修改</div>
-                  <div className={Btn.telActionDel}
-                    onClick={() => hendleDeleteTel(obj.telId)}
-                  >移除</div>
+                <div className={Crad.cradItme}><span className ={Crad.id}>{obj.telId}</span></div>
+                <div className={Crad.cradItme}>{obj.telName}</div>
+                <div className={Crad.cradItme}>{obj.tel}</div>
+                <div className={Crad.cradItme}>
+                  <div className={Btn.btnWarp}>
+                    <div className={Btn.telActionRevise}
+                      onClick={() => hendleUpdateTel(obj)}
+                    >修改</div>
+                    <div className={Btn.telActionDel}
+                      onClick={() => hendleDeleteTel(obj.telId)}
+                    >移除</div>
+                  </div>
                 </div>
               </div>
             </div>
