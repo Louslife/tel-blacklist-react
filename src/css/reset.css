@@ -45,3 +45,46 @@ img{
     max-width:100%; /*不使用width:100% 是因避免圖片解析度不好，隨父元素被放大時會糊掉*/
     height:auto;
 }
+
+/* Buttons styles start */
+button {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:hover,
+button:focus {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:focus {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:active {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+/* Button styles end */

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styles from '../css/Customized.module.css';
 
-import "../css/basic.css";
+import Header from '../css/Header.module.css';
+import SearchBar from '../css/SearchBar.module.css';
+import SubCategory from '../css/SubCategory.module.css';
+import Crad from '../css/Crad.module.css';
+import Btn from '../css/Btn.module.css';
 
 function TelBlacklist() {
 
@@ -240,15 +243,16 @@ function TelBlacklist() {
               onClick={hendleSeachTel}>放大鏡</i>
           </div>
         </from>
-        <div className="btn-warp">
-          <button name="black" onClick={hendleFilterTel}>黑名單</button>
-          <button name="white" onClick={hendleFilterTel}>白名單</button>
-          <button name="all" onClick={hendleFilterTel}>顯示全部</button>
-        </div>
       </nav>
 
-      <div className={styles.addTel}
+      <div className={Btn.addTel}
         onClick={hendleCreateTel}>+</div>
+        
+      <div className="subCategory">
+        <button name="black" onClick={hendleFilterTel}>黑名單</button>
+        <button name="white" onClick={hendleFilterTel}>白名單</button>
+        <button name="all" onClick={hendleFilterTel}>顯示全部</button>
+      </div>
 
       <main className="container">
         <div className="row">
@@ -256,44 +260,54 @@ function TelBlacklist() {
           <div className="col">名字</div>
           <div className="col">電話</div>
           <div className="col">行動</div>
+          <div className="btn-warp">
+          </div>
         </div>
-
         {(telList ? telList.map((obj, index) =>
           <>
-            <div className="row" key={obj.telId}>
-              <div className="col tel-id"> {obj.telId}</div>
-              <div className="col tel-name"> {obj.telName}</div>
-              <div className="col tel"> {obj.tel}</div>
-              <div className="col tel-action">
-                <div className={styles.telActionRevise}
-                  onClick={() => hendleUpdateTel(obj)}><i>修改</i></div>
-                <div className={styles.telActionDel}
-                  onClick={() => hendleDeleteTel(obj.telId)}><i>刪除</i></div>
+            <div className="cradWrap caption" key={obj.telId}>
+              <div className="row card">
+                <div className="cradId">{obj.telId}</div>
+                <div className="cradName">{obj.telName}</div>
+                <div className="cradTel">{obj.tel}</div>
+                <div className={Btn.btnWarp}>
+                  <div className={Btn.telActionRevise}
+                    onClick={() => hendleUpdateTel(obj)}
+                  >修改</div>
+                  <div className={Btn.telActionDel}
+                    onClick={() => hendleDeleteTel(obj.telId)}
+                  >移除</div>
+                </div>
               </div>
             </div>
-            {(isUpdate && currentTel === obj ?
-              <div className="row">
-                <div className="col"><input onChange={getIdInputValue} type="text" value={`${obj.telId}(id 不可改)`} /></div>
-                <div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}(在這裡更新內容)`} /></div>
-                <div className="col"><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}(在這裡更新內容)`} /></div>
-                <div className={styles.telActionDel}
-                  onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
-              </div> : "")}
+
+            {(isUpdate && currentTel === obj ? <div className="cradWrap" key={obj.telId}>
+              <div className="row card">
+                <div className="cradItme"><input onChange={getIdInputValue} type="text" value={`${obj.telId}(id 不可改)`} /></div>
+                <div className="cradItme"><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}(在這裡更新內容)`} /></div>
+                </div>
+                <div className="cradItme"><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}(在這裡更新內容)`} /></div>
+                <div className="cradItme btnWarp">
+                  <div className={Btn.telActionDel}
+                    onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
+                </div>
+              </div>
+            </div> : "")}
+
           </>
         ) : "Get No Data"
         )}
-        {isAdd ? <div className="row">
-          <div className="col"><input name="addId" type="text"
-            onChange={getIdInputValue} /></div>
-          <div className="col"><input name="addUser" type="text"
-            onChange={getUserInputValue} /></div>
-          <div className="col"><input name="addtel" type="text"
-            onChange={getTelInputValue} /></div>
-          <div className="col tel-action">
-            <div className={styles.telActionDel}
-              onClick={hendleSaveTel}><i>確定</i></div>
+        {(isAdd ? <div className="cradWrap">
+          <div className="row card">
+            <div className="cradItme"><input type="text" /></div>
+            <div className="cradItme"><input type="text" /></div>
+            <div className="cradItme"><input type="text" /></div>
+            <div className="cradItme btnWarp">
+              <div className={Btn.telActionDel}
+                onClick={() => hendleSaveTel()}><i>確定</i></div>
+            </div>
           </div>
-        </div> : ""}
+        </div> : "")}
       </main>
     </>
   )
