@@ -9,46 +9,46 @@ function TelBlacklist() {
     {
       telId: "1",
       telName: "小王",
-      tel: "091111111",
-      isBlack: false,
+      tel: "0911111111",
+      isBlack: true,
       date: ""
     }, {
       telId: "2",
       telName: "小李",
       tel: "0922222222",
-      isBlack: false,
+      isBlack: true,
       date: ""
     }, {
       telId: "3",
       telName: "小葉",
       tel: "0933333333",
-      isBlack: false,
+      isBlack: true,
       date: ""
     }, {
       telId: "4",
       telName: "小玉",
       tel: "0944444444",
-      isBlack: false,
+      isBlack: true,
       date: ""
     }, {
       telId: "5",
       telName: "小吳",
       tel: "0955555555",
-      isBlack: false,
+      isBlack: true,
       date: ""
     }
   ]
 
   const [telList, setTelList] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
-  const [currentTel, setCurrentTel] = useState({})
   const [isAdd, setIsAdd] = useState(false);
+  const [currentTel, setCurrentTel] = useState({})
 
   const [newTel, setNewTel] = useState("");
   const [newId, setNewId] = useState("");
   const [newUser, setNewUser] = useState("");
 
-  const [searchType, setSearchType] = useState("")
+  const [searchType, setSearchType] = useState("nameSeach")
   const [searchWord, setSearchWord] = useState("")
 
   // 拉取資料時將程式碼包覆於 useEffect 在 render 之後執行一次
@@ -64,9 +64,7 @@ function TelBlacklist() {
     switch (searchType) {
 
       case 'nameSeach':
-        console.log(telList)
         const newTelListName = telList.filter((tel) => {
-          console.log(searchWord)
           return tel.telName.includes(searchWord)
         })
         setTelList(newTelListName)
@@ -74,36 +72,20 @@ function TelBlacklist() {
         break;
 
       case 'telSeach':
-
-        console.log(telList)
         const newTelListTel = telList.filter((tel) => {
-          console.log(searchWord)
           return tel.tel.includes(searchWord)
         })
         setTelList(newTelListTel)
         console.log('search type is phone.');
-
         break;
+
       default:
         console.log(`no type.`);
     }
   }
 
-  const getSeachWord = (e) => {
-
-    setSearchWord(e.target.value);
-    console.log(e.target.value)
-
-  }
-  const getSeachType = (e) => {
-
-    setSearchType(e.target.value)
-    console.log(searchType)
-  }
-
   const hendleCreateTel = () => {
     // 新增一筆電話
-    // 在這裏認證一筆電話是否合法
     // IsAdd === true 時 input會出現
     if (isAdd) {
       setIsAdd(false)
@@ -115,7 +97,9 @@ function TelBlacklist() {
   const hendleSaveTel = () => {
     // 儲存一筆電話
     // 若我按下外框或者 enter 將存擋並且 setIsAdd(false)
+    // 在這裏認證一筆電話是否合法
     // cell Create API
+    confirmPhone(newTel)
     const newList = [...telList, {
       telId: newId,
       telName: newUser,
@@ -132,8 +116,6 @@ function TelBlacklist() {
     // v3.取得被修改的內容
     // 4.set 回來
     // 5.刪除舊的 新增新的 依照改變的資料顯示畫面
-
-    // 先刪除掉舊的資料 在新增新的一模一樣的資料 就能達到修改的目的
 
     // 驗證被修改的電話是否合法
     // cell Update API
@@ -188,6 +170,23 @@ function TelBlacklist() {
     console.log(e.target.value)
   }
 
+  const getSeachWord = (e) => {
+
+    setSearchWord(e.target.value);
+    console.log(e.target.value)
+
+  }
+  const getSeachType = (e) => {
+
+    setSearchType(e.target.value)
+    console.log(searchType)
+  }
+
+  const confirmPhone = (phoneNumber) => {
+
+    const reg = new RegExp(/^(0\d{1,2})-?(\d{6,7})(#\d+)?$/);
+    return reg.test(phoneNumber);
+  };
 
   return (
     <>
