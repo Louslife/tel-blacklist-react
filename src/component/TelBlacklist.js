@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import Header from '../css/Header.module.css';
+import '../css/Header.module.css';
 import SearchBar from '../css/SearchBar.module.css';
 import SubCategory from '../css/SubCategory.module.css';
 import Crad from '../css/Crad.module.css';
 import Btn from '../css/Btn.module.css';
+import FloatInput from "../css/FloatInput.module.css";
 
 function TelBlacklist() {
 
@@ -289,14 +290,14 @@ function TelBlacklist() {
               </div>
             </div>
 
-            {(isUpdate && currentTel === obj ? <div className="cradWrap" key={obj.telId}>
+            {(isUpdate && currentTel === obj ? <div className={FloatInput.isUpdateWrap} key={obj.telId}>
               <div className="row card">
-                <div className="cradItme"><input onChange={getIdInputValue} type="text" value={`${obj.telId}(id 不可改)`} /></div>
-                <div className="cradItme"><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}(在這裡更新內容)`} /></div>
+                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value={`${obj.telId}(id 不可改)`} /></div>
+                <div className={FloatInput.isUpdateItme}><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}(在這裡更新內容)`} /></div>
                 </div>
-                <div className="cradItme"><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}(在這裡更新內容)`} /></div>
-                <div className="cradItme btnWarp">
-                  <div className={Btn.telActionDel}
+                <div className={FloatInput.isUpdateItme}><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}(在這裡更新內容)`} /></div>
+                <div className={FloatInput.isUpdateItme}>
+                  <div className={FloatInput.isUpdateSure}
                     onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
                 </div>
               </div>
@@ -305,14 +306,14 @@ function TelBlacklist() {
           </>
         ) : "Get No Data"
         )}
-        {(isAdd ? <div className="cradWrap">
+        {(isAdd ? <div className={FloatInput.isAddWrap}>
           <div className="row card">
-            <div className="cradItme"><input type="text" /></div>
-            <div className="cradItme"><input type="text" /></div>
-            <div className="cradItme"><input type="text" /></div>
-            <div className="cradItme btnWarp">
-              <div className={Btn.telActionDel}
-                onClick={() => hendleSaveTel()}><i>確定</i></div>
+            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入項次"/></div>
+            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入名字" /></div>
+            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入電話"/></div>
+            <div className={FloatInput.isAddItme}>
+              <div className={FloatInput.isAddSure}
+                onClick={() => hendleSaveTel()}><i>加入黑名單</i></div>
             </div>
           </div>
         </div> : "")}
