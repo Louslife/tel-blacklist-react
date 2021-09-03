@@ -13,3 +13,10 @@
   display: flex;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    margin: 0 auto;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}

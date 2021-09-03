@@ -292,10 +292,10 @@ function TelBlacklist() {
 
             {(isUpdate && currentTel === obj ? <div className={FloatInput.isUpdateWrap} key={obj.telId}>
               <div className="row card">
-                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value={`${obj.telId}(id 不可改)`} /></div>
-                <div className={FloatInput.isUpdateItme}><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}(在這裡更新內容)`} /></div>
+                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value={`${obj.telId}(不可改)`} /></div>
+                <div className={FloatInput.isUpdateItme}><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}`} /></div>
                 </div>
-                <div className={FloatInput.isUpdateItme}><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}(在這裡更新內容)`} /></div>
+                <div className={FloatInput.isUpdateItme}><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}`} /></div>
                 <div className={FloatInput.isUpdateItme}>
                   <div className={FloatInput.isUpdateSure}
                     onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
@@ -313,7 +313,7 @@ function TelBlacklist() {
             <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入電話"/></div>
             <div className={FloatInput.isAddItme}>
               <div className={FloatInput.isAddSure}
-                onClick={() => hendleSaveTel()}><i>加入黑名單</i></div>
+                onClick={() => hendleSaveTel()}><i>確定</i></div>
             </div>
           </div>
         </div> : "")}

@@ -1,10 +1,9 @@
-.btnWarp {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.btnWarp{
+/* display: none; */
 }
 
 .addWarp {
+  position: relative;
   text-align: right;
   padding-left: 1.5rem;
   padding-right: 1.5em;
@@ -12,17 +11,55 @@
 }
 
 .addTel {
+  position: absolute;
   display: inline-block;
+  transform: translate(-100%, 0);
+  top: 400px;
+  width: 5rem;
+  height: 5rem;
+  background: rgba(0, 0, 0, 0.438);
   border-radius: 50%;
-  line-height: 24px;
   text-align: center;
-  font-size: 24px;
-  width: 25px;
-  height: 25px;
   color: white;
-  background: black;
+  line-height: 4.8rem;
+  font-size: 48px;
+  font-weight: 600;
 }
 
 .addWarp span {
-  font-size: 24px;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .addWarp {
+    position: relative;
+    padding-left: 5rem;
+    padding-right: 5em;
+  }
+  .addTel {
+    position: relative;
+    top: 0;
+    left: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 24px;
+    text-align: center;
+    font-size: 24px;
+    width: 25px;
+    height: 25px;
+    color: white;
+    background: black;
+  }
+
+  .addWarp span {
+    display: inline-block;
+    font-size: 24px;
+  }
+  .btnWarp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  
 }

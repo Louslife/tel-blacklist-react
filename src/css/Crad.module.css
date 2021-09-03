@@ -1,22 +1,18 @@
 .cradWrapCaption {
-  font-size: 18px;
-  font-weight: 600;
-  height: 3rem;
-  background: #000;
-  color: white;
-  line-height: 3rem;
-  text-align: center;
+display: none;
+}
+
+.cradWrap{
+  margin-top: 8px;
+  border: 2px solid #aaa;
 }
 
 .cradItme {
-  font-size: 18px;
-  height: 3.5rem;
-  line-height: 3.5rem;
+  font-size: 20px;
+  height: 4rem;
+  margin: auto ;
+  line-height: 4rem;
   text-align: center;
-}
-
-.cradWrap:nth-child(odd) {
-background: #ddd;
 }
 
 .id {
@@ -31,9 +27,38 @@ background: #ddd;
   left: 50%;
   transform: translate(-50%, 50%);
   content: "_";
-  width: 30px; 
+  width: 30px;
   height: 30px;
   background: #000;
   z-index: -5;
   color: rgba(255, 255, 255, 0);
+}
+
+@media screen and (min-width: 768px) {
+  .cradWrapCaption {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    height: 3rem;
+    background: #000;
+    color: white;
+    line-height: 3rem;
+    text-align: center;
+  }
+
+  .cradWrap{
+    display: block;
+    margin-top: 0;
+    border: none;
+  }
+  .cradItme {
+    all:unset;
+    font-size: 18px;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    text-align: center;
+  }
+  .cradWrap:nth-child(odd) {
+    background: #ddd;
+  }
 }
