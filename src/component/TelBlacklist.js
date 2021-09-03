@@ -241,7 +241,7 @@ function TelBlacklist() {
             </select>
             <input className={SearchBar.input} type="text" placeholder="關鍵字" onChange={getSeachWord} />
             <div className={SearchBar.icon}
-              onClick={hendleSeachTel}></div>
+              onClick={hendleSeachTel}>GO</div>
           </div>
         </from>
       </nav>
@@ -276,15 +276,15 @@ function TelBlacklist() {
               <div className="row card">
                 <div className={Crad.cradItme}><span className ={Crad.id}>{obj.telId}</span></div>
                 <div className={Crad.cradItme}>{obj.telName}</div>
-                <div className={Crad.cradItme}>{obj.tel}</div>
+                <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
                 <div className={Crad.cradItme}>
                   <div className={Crad.btnWarp}>
                     <div className={Crad.telActionRevise}
                       onClick={() => hendleUpdateTel(obj)}
-                    ></div>
+                    >&#9998;</div>
                     <div className={Crad.telActionDel}
                       onClick={() => hendleDeleteTel(obj.telId)}
-                    ></div>
+                    >&#9746;</div>
                   </div>
                 </div>
               </div>
@@ -308,9 +308,9 @@ function TelBlacklist() {
         )}
         {(isAdd ? <div className={FloatInput.isAddWrap}>
           <div className="row card">
-            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入項次"/></div>
-            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入名字" /></div>
-            <div className={FloatInput.isAddItme}><input type="text" placeholder="輸入電話"/></div>
+            <div className={FloatInput.isAddItme}><input onChange={getIdInputValue} type="text" placeholder="輸入項次"/></div>
+            <div className={FloatInput.isAddItme}><input onChange={getUserInputValue} type="text" placeholder="輸入名字" /></div>
+            <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話"/></div>
             <div className={FloatInput.isAddItme}>
               <div className={FloatInput.isAddSure}
                 onClick={() => hendleSaveTel()}><i>確定</i></div>

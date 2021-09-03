@@ -34,22 +34,28 @@
 }
 
 .btnWarp {
-  display: block;
-  width: 100%;
+  /* display: inline-block; */
+  /* text-align: end; */
+  text-align: right;
+  line-height: 30px;
 }
 
 .telActionRevise {
   display: block;
   width: 80px;
   height: 30px;
-  background: rgb(141, 73, 73);
+  line-height: 30px;
+  font-size: 30px;
+  color: #0496D2;
 }
 
 .telActionDel {
   display: block;
   width: 80px;
   height: 30px;
-  background: rgb(103, 95, 221);
+  line-height: 30px;
+  font-size: 30px;
+  color: #D36565;
 }
 
 @media screen and (min-width: 768px) {
