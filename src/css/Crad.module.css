@@ -1,16 +1,15 @@
 .cradWrapCaption {
-display: none;
+  display: none;
 }
 
-.cradWrap{
+.cradWrap {
   margin-top: 8px;
   border: 2px solid #aaa;
 }
 
 .cradItme {
   font-size: 20px;
-  height: 4rem;
-  margin: auto ;
+  margin: auto;
   line-height: 4rem;
   text-align: center;
 }
@@ -34,6 +33,25 @@ display: none;
   color: rgba(255, 255, 255, 0);
 }
 
+.btnWarp {
+  display: block;
+  width: 100%;
+}
+
+.telActionRevise {
+  display: block;
+  width: 80px;
+  height: 30px;
+  background: rgb(141, 73, 73);
+}
+
+.telActionDel {
+  display: block;
+  width: 80px;
+  height: 30px;
+  background: rgb(103, 95, 221);
+}
+
 @media screen and (min-width: 768px) {
   .cradWrapCaption {
     display: block;
@@ -46,13 +64,13 @@ display: none;
     text-align: center;
   }
 
-  .cradWrap{
+  .cradWrap {
     display: block;
     margin-top: 0;
     border: none;
   }
   .cradItme {
-    all:unset;
+    all: unset;
     font-size: 18px;
     height: 3.5rem;
     line-height: 3.5rem;
@@ -60,5 +78,11 @@ display: none;
   }
   .cradWrap:nth-child(odd) {
     background: #ddd;
+  }
+  .btnWarp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
 }

@@ -4,7 +4,7 @@ import '../css/Header.module.css';
 import SearchBar from '../css/SearchBar.module.css';
 import SubCategory from '../css/SubCategory.module.css';
 import Crad from '../css/Crad.module.css';
-import Btn from '../css/Btn.module.css';
+import AddBtn from '../css/AddBtn.module.css';
 import FloatInput from "../css/FloatInput.module.css";
 
 function TelBlacklist() {
@@ -245,8 +245,8 @@ function TelBlacklist() {
           </div>
         </from>
       </nav>
-      <div className={Btn.addWarp}>
-        <div className={Btn.addTel}
+      <div className={AddBtn.addWarp}>
+        <div className={AddBtn.addTel}
           onClick={hendleCreateTel}>+
         </div>
         <span>新增</span>
@@ -278,13 +278,13 @@ function TelBlacklist() {
                 <div className={Crad.cradItme}>{obj.telName}</div>
                 <div className={Crad.cradItme}>{obj.tel}</div>
                 <div className={Crad.cradItme}>
-                  <div className={Btn.btnWarp}>
-                    <div className={Btn.telActionRevise}
+                  <div className={Crad.btnWarp}>
+                    <div className={Crad.telActionRevise}
                       onClick={() => hendleUpdateTel(obj)}
-                    >修改</div>
-                    <div className={Btn.telActionDel}
+                    ></div>
+                    <div className={Crad.telActionDel}
                       onClick={() => hendleDeleteTel(obj.telId)}
-                    >移除</div>
+                    ></div>
                   </div>
                 </div>
               </div>

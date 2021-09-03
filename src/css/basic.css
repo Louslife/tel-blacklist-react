@@ -6,7 +6,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1fr 1.5fr;
 }
 
 .tel-action {
@@ -18,5 +18,9 @@
     margin: 0 auto;
     padding-left: 5rem;
     padding-right: 5rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
