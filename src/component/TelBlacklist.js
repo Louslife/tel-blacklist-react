@@ -99,7 +99,7 @@ function TelBlacklist() {
         setTelList(newTelListBlack)
         console.log("click button is black.")
         break;
-
+        
       case "white":
         const newTelListWhite = telList.filter((tel) => {
           return !tel.isBlack
