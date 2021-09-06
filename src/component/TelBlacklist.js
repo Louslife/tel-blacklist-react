@@ -49,6 +49,7 @@ function TelBlacklist() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [isAdd, setIsAdd] = useState(false);
   const [currentTel, setCurrentTel] = useState({})
+  const [updateTel, setUpdateTel] = useState({})
 
   const [newTel, setNewTel] = useState("");
   const [newId, setNewId] = useState("");
@@ -92,6 +93,7 @@ function TelBlacklist() {
 
   const hendleFilterTel = (e) => {
     // 點選名單按鈕
+    // dataReset()
     const btnType = e.target.name
     switch (btnType) {
       case "black":
@@ -151,12 +153,6 @@ function TelBlacklist() {
 
   const hendleUpdateTel = (tel) => {
     // 修改一筆電話
-    // v1.改變一筆電話的狀態(唯讀->能修改) 顯示 input (只顯示被修改的資料)
-    // v2.讓使用者可以修改 input 的內容
-    // v3.取得被修改的內容
-    // 4.set 回來
-    // 5.刪除舊的 新增新的 依照改變的資料顯示畫面
-
     // 驗證被修改的電話是否合法
     // cell Update API
     if (isUpdate) {
@@ -178,16 +174,20 @@ function TelBlacklist() {
       isBlack: true,
       date: ""
     }
+    setUpdateTel(nowTel)
     const newList = telList.map((obj, index) => {
-      console.log(obj)
-      console.log(tel)
-      console.log(nowTel)
-      return tel.telId === obj.telId ? { ...obj, ...nowTel } : obj;
+      return currentTel.telId === obj.telId ? { ...obj, ...updateTel } : obj;
     })
-    setCurrentTel({ ...currentTel, ...nowTel })
     setTelList(newList)
     alert("修改一筆電話");
-    console.log(telList);
+  }
+
+  // useEffect(() => {
+  //   console.log("telList", telList)
+  // }, [telList]);
+
+  const handleCurrentTelInput = (e) => {
+    setUpdateTel({ ...updateTel, [e.target.name]: e.target.value })
   }
 
   const hendleDeleteTel = (id) => {
@@ -242,6 +242,10 @@ function TelBlacklist() {
     const reg = new RegExp(/^(0\d{1,2})-?(\d{6,7})(#\d+)?$/);
     return reg.test(phoneNumber);
   };
+
+  const dataReset = () => {
+    setTelList(data);
+  }
 
   return (
     <>
@@ -299,12 +303,12 @@ function TelBlacklist() {
               </div>
             </div>
 
-            {(isUpdate && currentTel === obj ? <div className={FloatInput.isUpdateWrap} key={obj.telId}>
+            {(isUpdate && currentTel.telId === obj.telId ? <div className={FloatInput.isUpdateWrap} key={currentTel.telId}>
               <div className="row card">
-                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value={`${obj.telId}(不可改)`} /></div>
-                <div className={FloatInput.isUpdateItme}><div className="col"><input onChange={getUserInputValue} type="text" placeholder={`${obj.telName}`} /></div>
+                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value="ID" /></div>
+                <div className={FloatInput.isUpdateItme}><div className="col"><input name="telName" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.telName}`} /></div>
                 </div>
-                <div className={FloatInput.isUpdateItme}><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}`} /></div>
+                <div className={FloatInput.isUpdateItme}><input name="tel" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.tel}`} /></div>
                 <div className={FloatInput.isUpdateItme}>
                   <div className={FloatInput.isUpdateSure}
                     onClick={() => hendleSaveTelUpdate(currentTel)}><i>確定</i></div>
