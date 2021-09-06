@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from "react";
 
 import '../css/Header.module.css';
-import SearchBar from '../css/SearchBar.module.css';
+
 import SubCategory from '../css/SubCategory.module.css';
 import Crad from '../css/Crad.module.css';
 import AddBtn from '../css/AddBtn.module.css';
 import FloatInput from "../css/FloatInput.module.css";
 
+import SearchNav from "./SearchNav";
+
 function TelBlacklist() {
 
   const data = [
     {
-      telId: "1",
+      telId: "A1AS",
       telName: "小王",
       tel: "0911111111",
       isBlack: true,
       date: ""
     }, {
-      telId: "2",
+      telId: "B2SF",
       telName: "小李",
       tel: "0922222222",
       isBlack: true,
       date: ""
     }, {
-      telId: "3",
+      telId: "C3VB",
       telName: "小葉",
       tel: "0933333333",
       isBlack: true,
       date: ""
     }, {
-      telId: "4",
+      telId: "D4TY",
       telName: "小玉",
       tel: "0944444444",
       isBlack: true,
       date: ""
     }, {
-      telId: "5",
+      telId: "E5UY",
       telName: "小吳",
       tel: "0955555555",
       isBlack: true,
@@ -99,7 +101,7 @@ function TelBlacklist() {
         setTelList(newTelListBlack)
         console.log("click button is black.")
         break;
-        
+
       case "white":
         const newTelListWhite = telList.filter((tel) => {
           return !tel.isBlack
@@ -168,8 +170,24 @@ function TelBlacklist() {
 
   const hendleSaveTelUpdate = (tel) => {
     // 儲存一筆被修改的電話
-    alert("刪除修改電話")
     console.log(tel)
+    const nowTel = {
+      telId: tel.telId,
+      telName: newUser,
+      tel: newTel,
+      isBlack: true,
+      date: ""
+    }
+    const newList = telList.map((obj, index) => {
+      console.log(obj)
+      console.log(tel)
+      console.log(nowTel)
+      return tel.telId === obj.telId ? { ...obj, ...nowTel } : obj;
+    })
+    setCurrentTel({ ...currentTel, ...nowTel })
+    setTelList(newList)
+    alert("修改一筆電話");
+    console.log(telList);
   }
 
   const hendleDeleteTel = (id) => {
@@ -231,20 +249,11 @@ function TelBlacklist() {
         <h1>黑白名單管理</h1>
       </header>
 
-      <nav className="container">
-        <from className={SearchBar.seachWrap}>
-          <div className={SearchBar.inputGroup}>
-            <select className={SearchBar.select} name="category" id="category"
-              onChange={getSeachType}>
-              <option value="nameSeach">姓名</option>
-              <option value="telSeach">電話</option>
-            </select>
-            <input className={SearchBar.input} type="text" placeholder="關鍵字" onChange={getSeachWord} />
-            <div className={SearchBar.icon}
-              onClick={hendleSeachTel}>GO</div>
-          </div>
-        </from>
-      </nav>
+      <SearchNav
+        getSeachType={getSeachType}
+        getSeachWord={getSeachWord}
+        hendleSeachTel={hendleSeachTel}
+      />
       <div className={AddBtn.addWarp}>
         <div className={AddBtn.addTel}
           onClick={hendleCreateTel}>+
@@ -254,8 +263,8 @@ function TelBlacklist() {
 
       <div className={SubCategory.subCategory}>
         <button name="black" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>全部</button>
-        <button name="white" className={SubCategory.subCategoryItem}  onClick={hendleFilterTel}>黑名單</button>
-        <button name="all" className={SubCategory.subCategoryItem}  onClick={hendleFilterTel}>白名單</button>
+        <button name="white" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>黑名單</button>
+        <button name="all" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>白名單</button>
       </div>
 
       <main className="container">
@@ -271,10 +280,10 @@ function TelBlacklist() {
         </div>
 
         {(telList ? telList.map((obj, index) =>
-          <>
-            <div className={Crad.cradWrap} key={obj.telId}>
+          <React.Fragment key={obj.telId}>
+            <div className={Crad.cradWrap}>
               <div className="row card">
-                <div className={Crad.cradItme}><span className ={Crad.id}>{obj.telId}</span></div>
+                <div className={Crad.cradItme}><span className={Crad.id}>{index + 1}</span></div>
                 <div className={Crad.cradItme}>{obj.telName}</div>
                 <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
                 <div className={Crad.cradItme}>
@@ -298,19 +307,18 @@ function TelBlacklist() {
                 <div className={FloatInput.isUpdateItme}><input onChange={getTelInputValue} type="text" placeholder={`${obj.tel}`} /></div>
                 <div className={FloatInput.isUpdateItme}>
                   <div className={FloatInput.isUpdateSure}
-                    onClick={() => hendleSaveTelUpdate(obj)}><i>確定</i></div>
+                    onClick={() => hendleSaveTelUpdate(currentTel)}><i>確定</i></div>
                 </div>
               </div>
             </div> : "")}
-
-          </>
+          </React.Fragment>
         ) : "Get No Data"
         )}
         {(isAdd ? <div className={FloatInput.isAddWrap}>
           <div className="row card">
-            <div className={FloatInput.isAddItme}><input onChange={getIdInputValue} type="text" placeholder="輸入項次"/></div>
+            <div className={FloatInput.isAddItme}><input onChange={getIdInputValue} type="text" placeholder="輸入項次" /></div>
             <div className={FloatInput.isAddItme}><input onChange={getUserInputValue} type="text" placeholder="輸入名字" /></div>
-            <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話"/></div>
+            <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話" /></div>
             <div className={FloatInput.isAddItme}>
               <div className={FloatInput.isAddSure}
                 onClick={() => hendleSaveTel()}><i>確定</i></div>
