@@ -292,9 +292,9 @@ function TelBlacklist() {
                 <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
                 <div className={Crad.cradItme}>
                   <div className={Crad.btnWarp}>
-                    <div className={Crad.telActionRevise}
+                    {/* <div className={Crad.telActionRevise}
                       onClick={() => hendleUpdateTel(obj)}
-                    >&#9998;</div>
+                    >&#9998;</div> */}
                     <div className={Crad.telActionDel}
                       onClick={() => hendleDeleteTel(obj.telId)}
                     >&#9746;</div>
