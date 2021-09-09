@@ -1,13 +1,12 @@
 .addWarp {
-  position: relative;
   text-align: right;
   padding-left: 1.5rem;
   padding-right: 1.5em;
   padding-bottom: 5px;
 }
-
+/* 手機版 addTel position 待修正 */
 .addTel {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   transform: translate(-100%, 0);
   top: 440px;

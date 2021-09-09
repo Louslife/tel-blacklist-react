@@ -48,7 +48,7 @@ img{
 
 /* Buttons styles start */
 button {
-  display: inline-block;
+  /* display: inline-block; */
   border: none;
   padding: 0;
   margin: 0;

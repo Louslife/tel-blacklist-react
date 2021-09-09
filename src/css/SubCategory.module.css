@@ -1,7 +1,5 @@
 .subCategory {
   display: flex;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .subCategoryItem {
@@ -36,13 +34,24 @@
   .subCategory {
     display: inline-block;
     text-align: right;
-    width: 100%;
-    padding-left: 5rem;
-    padding-right: 5rem;
   }
+
   .subCategoryItem {
+    display: block;
     font-size: 18px;
     width: 5rem;
-    height: 3.5rem;
+    height: 5rem;
   }
+
+  .subCategoryItem:hover,
+  .subCategoryItem:active {
+    display: block;
+  }
+
+  .subCategoryItem p {
+    line-height: 5rem;
+    text-align: center;
+    writing-mode: vertical-lr;
+  }
+
 }

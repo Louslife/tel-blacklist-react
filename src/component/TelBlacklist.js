@@ -266,70 +266,74 @@ function TelBlacklist() {
         <span>新增</span>
       </div>
 
-      <div className={SubCategory.subCategory}>
-        <button name="black" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>全部</button>
-        <button name="white" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>黑名單</button>
-        <button name="all" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}>白名單</button>
-      </div>
-
       <main className="container">
-        <div className={Crad.cradWrapCaption} >
-          <div className="row">
-            <div className="col">項次</div>
-            <div className="col">名字</div>
-            <div className="col">電話</div>
-            <div className="col"></div>
-            <div className="btn-warp">
-            </div>
-          </div>
-        </div>
 
-        {(telList ? telList.map((obj, index) =>
-          <React.Fragment key={obj.telId}>
-            <div className={Crad.cradWrap}>
-              <div className="row card">
-                <div className={Crad.cradItme}><span className={Crad.id}>{index + 1}</span></div>
-                <div className={Crad.cradItme}>{obj.telName}</div>
-                <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
-                <div className={Crad.cradItme}>
-                  <div className={Crad.btnWarp}>
-                    {/* <div className={Crad.telActionRevise}
-                      onClick={() => hendleUpdateTel(obj)}
-                    >&#9998;</div> */}
-                    <div className={Crad.telActionDel}
-                      onClick={() => hendleDeleteTel(obj.telId)}
-                    >&#9746;</div>
-                  </div>
+        <div className="table-warp">
+          <div className={SubCategory.subCategory}>
+            <button name="black" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}><p>全部</p></button>
+            <button name="white" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}><p>黑名單</p></button>
+            <button name="all" className={SubCategory.subCategoryItem} onClick={hendleFilterTel}><p>白名單</p></button>
+          </div>
+          <div className="table-item">
+            <div className={Crad.cradWrapCaption} >
+              <div className="row">
+                <div className={Crad.col}>項次</div>
+                <div className={Crad.col}>名字</div>
+                <div className={Crad.col}>電話</div>
+                <div className={Crad.col}></div>
+                <div className="btn-warp">
                 </div>
               </div>
             </div>
 
-            {(isUpdate && currentTel.telId === obj.telId ? <div className={FloatInput.isUpdateWrap} key={currentTel.telId}>
-              <div className="row card">
-                <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value="ID" /></div>
-                <div className={FloatInput.isUpdateItme}><div className="col"><input name="telName" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.telName}`} /></div>
+            {(telList ? telList.map((obj, index) =>
+              <React.Fragment key={obj.telId}>
+                <div className={Crad.cradWrap}>
+                  <div className="row card">
+                    <div className={Crad.cradItme}><span className={Crad.id}>{index + 1}</span></div>
+                    <div className={Crad.cradItme}>{obj.telName}</div>
+                    <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
+                    <div className={Crad.cradItme}>
+                      <div className={Crad.btnWarp}>
+                        {/* <div className={Crad.telActionRevise}
+                      onClick={() => hendleUpdateTel(obj)}
+                    >&#9998;</div> */}
+                        <div className={Crad.telActionDel}
+                          onClick={() => hendleDeleteTel(obj.telId)}
+                        >移除</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className={FloatInput.isUpdateItme}><input name="tel" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.tel}`} /></div>
-                <div className={FloatInput.isUpdateItme}>
-                  <div className={FloatInput.isUpdateSure}
-                    onClick={() => hendleSaveTelUpdate(currentTel)}><i>確定</i></div>
+
+                {(isUpdate && currentTel.telId === obj.telId ? <div className={FloatInput.isUpdateWrap} key={currentTel.telId}>
+                  <div className="row card">
+                    <div className={FloatInput.isUpdateItme}><input onChange={getIdInputValue} type="text" value="ID" /></div>
+                    <div className={FloatInput.isUpdateItme}><div className="col"><input name="telName" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.telName}`} /></div>
+                    </div>
+                    <div className={FloatInput.isUpdateItme}><input name="tel" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.tel}`} /></div>
+                    <div className={FloatInput.isUpdateItme}>
+                      <div className={FloatInput.isUpdateSure}
+                        onClick={() => hendleSaveTelUpdate(currentTel)}><i>確定</i></div>
+                    </div>
+                  </div>
+                </div> : "")}
+              </React.Fragment>
+            ) : "Get No Data"
+            )}
+            {(isAdd ? <div className={FloatInput.isAddWrap}>
+              <div className="row card">
+                <div className={FloatInput.isAddItme}><input onChange={getIdInputValue} type="text" disabled placeholder="預設項次(不用填)" /></div>
+                <div className={FloatInput.isAddItme}><input onChange={getUserInputValue} type="text" placeholder="輸入名字" /></div>
+                <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話" /></div>
+                <div className={FloatInput.isAddItme}>
+                  <div className={FloatInput.isAddSure}
+                    onClick={() => hendleSaveTel()}><i>確定</i></div>
                 </div>
               </div>
             </div> : "")}
-          </React.Fragment>
-        ) : "Get No Data"
-        )}
-        {(isAdd ? <div className={FloatInput.isAddWrap}>
-          <div className="row card">
-            <div className={FloatInput.isAddItme}><input onChange={getIdInputValue} type="text" placeholder="輸入項次" /></div>
-            <div className={FloatInput.isAddItme}><input onChange={getUserInputValue} type="text" placeholder="輸入名字" /></div>
-            <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話" /></div>
-            <div className={FloatInput.isAddItme}>
-              <div className={FloatInput.isAddSure}
-                onClick={() => hendleSaveTel()}><i>確定</i></div>
-            </div>
           </div>
-        </div> : "")}
+        </div>
       </main>
     </>
   )

@@ -24,4 +24,12 @@
   .row {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  .table-warp {
+    display: flex;
+  }
+
+  .table-item {
+    flex: auto;
+  }
 }
