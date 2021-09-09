@@ -5,11 +5,12 @@
   padding-bottom: 5px;
 }
 /* 手機版 addTel position 待修正 */
+/* 還沒將新增時的需要隱藏的邏輯寫好 */
 .addTel {
   position: fixed;
   display: inline-block;
   transform: translate(-100%, 0);
-  top: 440px;
+  top: 80%;
   width: 5rem;
   height: 5rem;
   background: rgba(0, 0, 0, 0.438);
