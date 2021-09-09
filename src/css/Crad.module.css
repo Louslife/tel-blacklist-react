@@ -45,6 +45,7 @@
   line-height: 30px;
   font-size: 30px;
   color: #0496D2;
+  cursor: pointer;
 }
 
 .telActionDel {
@@ -55,6 +56,7 @@
   font-size: 30px;
   color: #D36565;
   text-align: center;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
