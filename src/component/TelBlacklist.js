@@ -258,6 +258,7 @@ function TelBlacklist() {
         getSeachWord={getSeachWord}
         hendleSeachTel={hendleSeachTel}
       />
+
       <div className={AddBtn.addWarp}>
         <div className={AddBtn.addTel}
           onClick={hendleCreateTel}>+
@@ -277,7 +278,7 @@ function TelBlacklist() {
             <div className="col">項次</div>
             <div className="col">名字</div>
             <div className="col">電話</div>
-            <div className="col">行動</div>
+            <div className="col"></div>
             <div className="btn-warp">
             </div>
           </div>

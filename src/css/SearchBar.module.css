@@ -6,7 +6,7 @@
   height: 25px;
   display: inline-block;
   font-size: 1.3rem;
-  border: 1.5px solid #9f9f9f;
+  line-height: 1.3rem;
 }
 .input {
   width: 50%;
@@ -46,9 +46,7 @@
   }
   .select {
     flex: 1;
-    height: 50px;
-    font-size: 1.3rem;
-    border: 1.5px solid #9f9f9f;
+    align-items: center;
   }
 
   .input {
@@ -77,7 +75,7 @@
   }
 
   .icon {
-    font-size: 5em; /* This controls the size. */
+    font-size: 5em;
     display: inline-block;
     right: 0.03em;
     bottom: -0.03em;

@@ -9,12 +9,12 @@ const SearchNav = (props) => {
       <form className={SearchBar.seachWrap}>
         <div className={SearchBar.inputWrap}>
           <div className={SearchBar.inputGroup}>
-            <select className={SearchBar.select} name="category" id="category"
+            <div className={SearchBar.select} name="category" id="category"
               onChange={props.getSeachType}
             >
               {/* <option value="nameSeach">姓名</option> */}
-              <option value="telSeach">電話</option>
-            </select >
+              <span value="telSeach">電話：</span>
+            </div >
             <input className={SearchBar.input} type="text" placeholder="關鍵字"
               onChange={props.getSeachWord}
             />
@@ -23,12 +23,12 @@ const SearchNav = (props) => {
           >GO</div> */}
           </div>
           <div className={SearchBar.inputGroup}>
-            <select className={SearchBar.select} name="category" id="category"
+            <div className={SearchBar.select} name="category" id="category"
               onChange={props.getSeachType}
             >
-              <option value="nameSeach">姓名</option>
+              <span value="nameSeach">姓名：</span>
               {/* <option value="telSeach">電話</option> */}
-            </select>
+            </div>
             <input className={SearchBar.input} type="text" placeholder="關鍵字"
               onChange={props.getSeachWord}
             />

@@ -16,11 +16,11 @@
 
 .id {
   position: relative;
-  color: #fff;
+  color: #000;
   z-index: 999;
 }
 
-.id::before {
+/* .id::before {
   position: absolute;
   border-radius: 50%;
   left: 50%;
@@ -31,11 +31,9 @@
   background: #000;
   z-index: -5;
   color: rgba(255, 255, 255, 0);
-}
+} */
 
 .btnWarp {
-  /* display: inline-block; */
-  /* text-align: end; */
   text-align: right;
   line-height: 30px;
 }
