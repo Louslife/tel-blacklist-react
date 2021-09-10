@@ -63,7 +63,7 @@ const TelBlacklist = () => {
       telId: "E5UY",
       telName: "小吳",
       tel: "0955555555",
-      isBlack: true,
+      isBlack: false,
       date: ""
     }
   ]
@@ -88,14 +88,8 @@ const TelBlacklist = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   document.addEventListener("click", hendleFilterTel);
-  //   return () => {
-  //     document.removeEventListener("click", hendleFilterTel);
-  //   };
-  // }, []);
 
-  const hendleSeachTel = () => {
+  const handleSeachTel = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
     console.log(searchType)
@@ -122,11 +116,12 @@ const TelBlacklist = () => {
     }
   }
 
-  const hendleFilterTel = (e) => {
+  const handleFilterTel = (e) => {
     // 點選名單按鈕
-    const btnType = e.target.name
-    console.log(e.target)
-    console.log(e.target.name)
+    const currentTarget = e.currentTarget
+    const btnType = currentTarget.name
+    console.log(currentTarget)
+    console.log(currentTarget.name)
     switch (btnType) {
       case "black":
         dataReset()
@@ -148,20 +143,17 @@ const TelBlacklist = () => {
 
       case "all":
         dataReset()
-        const newTelListAll = telList.filter((tel) => {
-          return true
-        })
-        setTelList(newTelListAll)
         console.log("click button is all.")
         break;
 
       default:
+        dataReset()
         console.log("no button type.")
         break;
     }
   }
 
-  const hendleCreateTel = () => {
+  const handleCreateTel = () => {
     // 新增一筆電話
     // IsAdd === true 時 input會出現
     if (isAdd) {
@@ -171,7 +163,7 @@ const TelBlacklist = () => {
     }
   }
 
-  const hendleSaveTel = () => {
+  const handleSaveTel = () => {
     // 儲存一筆電話
     // 若我按下外框或者 enter 將存擋並且 setIsAdd(false)
     // 在這裏認證一筆電話是否合法
@@ -186,7 +178,7 @@ const TelBlacklist = () => {
     setTelList(newList)
   }
 
-  // const hendleUpdateTel = (tel) => {
+  // const handleUpdateTel = (tel) => {
   //   // 修改一筆電話
   //   // 驗證被修改的電話是否合法
   //   // cell Update API
@@ -199,7 +191,7 @@ const TelBlacklist = () => {
   //   console.log(currentTel)
   // }
 
-  // const hendleSaveTelUpdate = (tel) => {
+  // const handleSaveTelUpdate = (tel) => {
   //   // 儲存一筆被修改的電話
   //   console.log(tel)
   //   const nowTel = {
@@ -225,7 +217,7 @@ const TelBlacklist = () => {
   //   setUpdateTel({ ...updateTel, [e.target.name]: e.target.value })
   // }
 
-  const hendleDeleteTel = (id) => {
+  const handleDeleteTel = (id) => {
     // cell Delete API
     // 使用 id 作為索引
     alert("刪除一筆電話")
@@ -236,7 +228,7 @@ const TelBlacklist = () => {
     setTelList(newList)
   }
 
-  // const hendleChangeType = () => {
+  // const handleChangeType = () => {
   //   // cell Update API
   //   // 修改一筆電話的狀態
   //   // 白名單變成黑名單
@@ -292,12 +284,12 @@ const TelBlacklist = () => {
       <SearchNav
         getSeachType={getSeachType}
         getSeachWord={getSeachWord}
-        hendleSeachTel={hendleSeachTel}
+        handleSeachTel={handleSeachTel}
       />
 
       <div className={AddBtn.addWarp}>
         <div className={AddBtn.addTel}
-          onClick={hendleCreateTel}>+
+          onClick={handleCreateTel}>+
         </div>
         <span>新增</span>
       </div>
@@ -306,9 +298,9 @@ const TelBlacklist = () => {
 
         <div className="table-warp">
           <div className={SubCategory.subCategory}>
-            <button name="all" className={SubCategory.subCategoryItem} onClick={(e) => hendleFilterTel(e)}><p onClick={(e) => { e.preventDefault(e) }}>全部</p></button>
-            <button name="black" className={SubCategory.subCategoryItem} onClick={(e) => hendleFilterTel(e)}><SadSvg /><p onClick={(e) => { e.preventDefault(e) }}>黑名單</p></button>
-            <button name="white" className={SubCategory.subCategoryItem} onClick={(e) => hendleFilterTel(e)}><SmileSvg /><p onClick={(e) => { e.preventDefault(e) }}>白名單</p></button>
+            <button name="all" className={SubCategory.subCategoryItem} onClick={(e) => handleFilterTel(e)}><p onClick={(e) => { e.preventDefault(e) }}>全部</p></button>
+            <button name="black" className={SubCategory.subCategoryItem} onClick={(e) => handleFilterTel(e)}><SadSvg /><p onClick={(e) => { e.preventDefault(e) }}>黑名單</p></button>
+            <button name="white" className={SubCategory.subCategoryItem} onClick={(e) => handleFilterTel(e)}><SmileSvg /><p onClick={(e) => { e.preventDefault(e) }}>白名單</p></button>
           </div>
           <div className="table-item">
             <div className={Crad.cradWrapCaption} >
@@ -329,25 +321,25 @@ const TelBlacklist = () => {
                 <div className={FloatInput.isAddItme}><input onChange={getTelInputValue} type="text" placeholder="輸入電話" /></div>
                 <div className={FloatInput.isAddItme}>
                   <div className={FloatInput.isAddSure}
-                    onClick={() => hendleSaveTel()}><i>確定</i></div>
+                    onClick={() => handleSaveTel()}><i>確定</i></div>
                 </div>
               </div>
             </div> : "")}
-            
+
             {(telList ? telList.map((obj, index) =>
               <React.Fragment key={obj.telId}>
                 <div className={Crad.cradWrap}>
                   <div className="row card">
                     <div className={Crad.cradItme}><span className={Crad.id}>{index + 1}</span></div>
-                    <div className={Crad.cradItme}>{obj.telName}</div>
-                    <div className={Crad.cradItme}>&#9742;{obj.tel}</div>
+                    <div className={Crad.cradItme}>{obj.telName} <SadSvg /></div>
+                    <div className={Crad.cradItme}>&#9742; {obj.tel}</div>
                     <div className={Crad.cradItme}>
                       <div className={Crad.btnWarp}>
                         {/* <div className={Crad.telActionRevise}
-                      onClick={() => hendleUpdateTel(obj)}
+                      onClick={() => handleUpdateTel(obj)}
                     >&#9998;</div> */}
                         <div className={Crad.telActionDel}
-                          onClick={() => hendleDeleteTel(obj.telId)}
+                          onClick={() => handleDeleteTel(obj.telId)}
                         >移除</div>
                       </div>
                     </div>
@@ -362,7 +354,7 @@ const TelBlacklist = () => {
                     <div className={FloatInput.isUpdateItme}><input name="tel" onChange={handleCurrentTelInput} type="text" placeholder={`${obj.tel}`} /></div>
                     <div className={FloatInput.isUpdateItme}>
                       <div className={FloatInput.isUpdateSure}
-                        onClick={() => hendleSaveTelUpdate(currentTel)}><i>確定</i></div>
+                        onClick={() => handleSaveTelUpdate(currentTel)}><i>確定</i></div>
                     </div>
                   </div>
                 </div> : "")} */}
