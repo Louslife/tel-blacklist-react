@@ -9,7 +9,6 @@
   border-radius: 0;
   font-size: 24px;
   width: 8rem;
-  height: 4rem;
 }
 
 .subCategoryItem:first-child:active,
@@ -30,6 +29,19 @@
   color: black;
 }
 
+.sadWarp,
+.smileWarp {
+  display: none;
+}
+
+.sadLogo g {
+  fill: #777777;
+}
+
+.smileLogo g {
+  fill: #d36565;
+}
+
 @media screen and (min-width: 768px) {
   .subCategory {
     display: inline-block;
@@ -40,7 +52,7 @@
     display: block;
     font-size: 18px;
     width: 5rem;
-    height: 5rem;
+    height: 6rem;
   }
 
   .subCategoryItem:hover,
@@ -54,4 +66,11 @@
     writing-mode: vertical-lr;
   }
 
+  .sadWarp,
+  .smileWarp {
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+  }
 }
