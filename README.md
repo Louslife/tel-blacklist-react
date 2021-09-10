@@ -1,8 +1,13 @@
 # tel-blacklist-react
 
 ## 功能描述 (Features)
-列出電話名單，使用者可以查閱、增加、修改、刪除一筆電話。
-也能夠使用搜尋、篩選要查閱的電話，例如：想要看全部電話，就使用全部篩選頁籤按鈕。
+列出電話名單，使用者可以查閱、增加、刪除一筆電話。
+可以搜尋電話或姓名，使用頁籤（全部、黑名單、白名單）篩選查閱的電話清單。
+
+## React Component 架構
+- 父層：TelBlacklist
+  - SearchNav
+  - TableWarp
 
 ## CSS 
 1. 全域會使用到的 CSS class name 使用 小寫開頭 Ex. basic、reset
