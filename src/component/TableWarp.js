@@ -40,7 +40,7 @@ const TableWarp = (props) => {
           <div className={Crad.cradWrapCaption} >
             <div className="row">
               <div className={Crad.col}>項次</div>
-              <div className={Crad.col}>名字</div>
+              <div className={Crad.col}>姓名</div>
               <div className={Crad.col}>電話</div>
               <div className={Crad.col}></div>
               <div className="btn-warp">
