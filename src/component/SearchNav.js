@@ -42,7 +42,6 @@ const SearchNav = (props) => {
             <span className={SearchBar.icon}></span>
           </div>
         </div>
-
       </form>
     </nav>
   )
