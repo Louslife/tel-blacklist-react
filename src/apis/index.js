@@ -6,7 +6,7 @@ const basicAPI = axios.create(
   })
 
   // 添加 1 筆名單
-  export const apiAddTel = data => basicAPI.post('/list', data);
+  export const apiCreateTel = data => basicAPI.post('/list', data);
 
   // 模糊搜尋查詢資料 /lists/search?
   export const apiSearchTel = data => basicAPI.get('/list/search', data);

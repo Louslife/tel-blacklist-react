@@ -7,7 +7,7 @@ import AddBtn from '../css/AddBtn.module.css';
 import SearchNav from "./SearchNav";
 import TableWarp from "./TableWarp";
 
-import { apiAllTel } from "../apis/index.js";
+import { apiAllTel, apiCreateTel } from "../apis/index.js";
 
 const TelBlacklist = () => {
 
@@ -66,15 +66,15 @@ const TelBlacklist = () => {
       const { data } = apiAllTel()
         .catch(err => console.log(err));
 
-    //   fetch('http://telesale.bonvies.com:8080/lists', {method: 'GET'})
-    //   .then((response) => {
-    //     console.log(response);
-    //     return response.json(); 
-    //   }).then((jsonData) => {
-    //     console.log(jsonData);
-    //   }).catch((err) => {
-    //     console.log('錯誤:', err);
-    // });
+      //   fetch('http://telesale.bonvies.com:8080/lists', {method: 'GET'})
+      //   .then((response) => {
+      //     console.log(response);
+      //     return response.json(); 
+      //   }).then((jsonData) => {
+      //     console.log(jsonData);
+      //   }).catch((err) => {
+      //     console.log('錯誤:', err);
+      // });
 
 
 
@@ -165,6 +165,18 @@ const TelBlacklist = () => {
     // 若我按下外框或者 enter 將存擋並且 setIsAdd(false)
     // 在這裏認證一筆電話是否合法
     // cell Create API
+
+    // apiCreateTel({
+    //   header: {
+    //     accept: "application/json",
+    //     "Content-Type": "application/x-json-stream"
+    //   },
+    //   data: {
+    //     name: 'test',
+    //     phone: 'test'
+    //   }
+    // })
+
     confirmPhone(newTel)
     const newList = [...telList, {
       telId: newId,
