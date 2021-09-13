@@ -7,42 +7,42 @@ import AddBtn from '../css/AddBtn.module.css';
 import SearchNav from "./SearchNav";
 import TableWarp from "./TableWarp";
 
-import { apiAllTel, apiCreateTel } from "../apis/index.js";
+import { apiAllTel, apiCreateTel, apiDeletedTel } from "../apis/index.js";
 
 const TelBlacklist = () => {
 
   const data = [
-    // {
-    //   telId: "A1AS",
-    //   telName: "小王",
-    //   tel: "0911111111",
-    //   isBlack: true,
-    //   date: ""
-    // }, {
-    //   telId: "B2SF",
-    //   telName: "小李",
-    //   tel: "0922222222",
-    //   isBlack: true,
-    //   date: ""
-    // }, {
-    //   telId: "C3VB",
-    //   telName: "小葉",
-    //   tel: "0933333333",
-    //   isBlack: true,
-    //   date: ""
-    // }, {
-    //   telId: "D4TY",
-    //   telName: "小玉",
-    //   tel: "0944444444",
-    //   isBlack: true,
-    //   date: ""
-    // }, {
-    //   telId: "E5UY",
-    //   telName: "小吳",
-    //   tel: "0955555555",
-    //   isBlack: false,
-    //   date: ""
-    // }
+    {
+      telId: "A1AS",
+      telName: "小王",
+      tel: "0911111111",
+      isBlack: true,
+      date: ""
+    }, {
+      telId: "B2SF",
+      telName: "小李",
+      tel: "0922222222",
+      isBlack: true,
+      date: ""
+    }, {
+      telId: "C3VB",
+      telName: "小葉",
+      tel: "0933333333",
+      isBlack: true,
+      date: ""
+    }, {
+      telId: "D4TY",
+      telName: "小玉",
+      tel: "0944444444",
+      isBlack: true,
+      date: ""
+    }, {
+      telId: "E5UY",
+      telName: "小吳",
+      tel: "0955555555",
+      isBlack: false,
+      date: ""
+    }
   ]
 
   const [telList, setTelList] = useState(null);
@@ -61,27 +61,27 @@ const TelBlacklist = () => {
   // 拉取資料時將程式碼包覆於 useEffect 在 render 之後執行一次
   useEffect(() => {
     // 在這裏拉取資料
-    const data = []
-    const getData = () => {
-      const { data } = apiAllTel()
-        .catch(err => console.log(err));
+    // const data = []
+    // const getData = () => {
+    //   const { data } = apiAllTel()
+    //     .catch(err => console.log(err));
 
-      //   fetch('http://telesale.bonvies.com:8080/lists', {method: 'GET'})
-      //   .then((response) => {
-      //     console.log(response);
-      //     return response.json(); 
-      //   }).then((jsonData) => {
-      //     console.log(jsonData);
-      //   }).catch((err) => {
-      //     console.log('錯誤:', err);
-      // });
+    //   fetch('http://telesale.bonvies.com:8080/lists', {method: 'GET'})
+    //   .then((response) => {
+    //     console.log(response);
+    //     return response.json(); 
+    //   }).then((jsonData) => {
+    //     console.log(jsonData);
+    //   }).catch((err) => {
+    //     console.log('錯誤:', err);
+    // });
 
 
 
-      return data;
-    }
-    getData()
-    console.log(data)
+    // return data;
+    // }
+    // getData()
+    // console.log(data)
     setTelList(data)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -229,12 +229,16 @@ const TelBlacklist = () => {
   const handleDeleteTel = (id) => {
     // cell Delete API
     // 使用 id 作為索引
+    apiDeletedTel({ id })
+
     alert("刪除一筆電話")
-    const newList = telList.filter((telList) => {
-      return telList.telId !== id;
-    })
-    console.log(newList)
-    setTelList(newList)
+    // const newList = telList.filter((telList) => {
+    //   return telList.telId !== id;
+    // })
+    // console.log(newList)
+    // setTelList(newList)
+
+
   }
 
   // const handleChangeType = () => {
