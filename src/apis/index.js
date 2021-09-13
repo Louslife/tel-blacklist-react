@@ -1,6 +1,6 @@
-import axio from "axio";
+import axios from "axios";
 
-const basicAPI = axio.create(
+const basicAPI = axios.create(
   {
     baseURL: 'http://telesale.bonvies.com:8080/'
   })
@@ -14,5 +14,5 @@ const basicAPI = axio.create(
   // 通過 Id 刪除名單
   export const apiDeletedTel = data => basicAPI.delete('/list', data);
 
-  // 全部搜尋
-  export const apiAllSearchTel = data => basicAPI.get('/lists', data);
+  // 全部
+  export const apiAllTel = data => basicAPI.get('/lists', data);
