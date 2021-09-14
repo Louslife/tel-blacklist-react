@@ -89,10 +89,26 @@ const Blacklist = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
     // cell seach api
+    const newList = [getTelSearchList(searchTel)[0], getUserSearchList(searchUser)[0]]
+
+    console.log(newList)
     resetSearchTel()
     resetSearchUser()
-    console.log("searchUser", searchUser)
-    console.log("searchTel", searchTel)
+
+  }
+
+  const getTelSearchList = (searchTel = "") => {
+
+    return telList.filter(tel =>
+      tel.tel.toLowerCase().indexOf(searchTel.toLowerCase()) > -1
+    );
+  }
+
+  const getUserSearchList = (searchUser = "") => {
+
+    return telList.filter(tel =>
+      tel.telName.toLowerCase().indexOf(searchUser.toLowerCase()) > -1
+    );
   }
 
   const handleFilterTel = (e) => {
