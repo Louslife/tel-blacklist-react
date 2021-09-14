@@ -88,7 +88,9 @@ const Blacklist = () => {
   const handleSearchTel = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
-    alert("ok")
+    // cell seach api
+    resetSearchTel()
+    resetSearchUser()
     console.log("searchUser", searchUser)
     console.log("searchTel", searchTel)
   }
