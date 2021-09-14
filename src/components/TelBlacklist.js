@@ -9,7 +9,12 @@ import TableWarp from "./TableWarp";
 
 import { apiAllTel, apiCreateTel, apiDeletedTel } from "../apis/index.js";
 
+import { useInput } from './../hooks/useInput';
+
+
 const TelBlacklist = () => {
+
+
 
   const data = [
     {
@@ -247,6 +252,9 @@ const TelBlacklist = () => {
   //   // 白名單變成黑名單
   //   // 黑名單變成白名單
   // }
+
+  //   const { value:newTel, bind:bindNewTel, reset:resetNewTel } = useInput('');
+  // const { value:newUser, bind:bindNewUser, reset:resetNewUser  } = useInput('');
 
   const getIdInputValue = (e) => {
 
