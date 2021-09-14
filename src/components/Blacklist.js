@@ -53,12 +53,11 @@ const Blacklist = () => {
   // const [currentTel, setCurrentTel] = useState({})
   // const [updateTel, setUpdateTel] = useState({})
 
-  // const [newTel, setNewTel] = useState("");
-  // const [newId, setNewId] = useState("");
-  // const [newUser, setNewUser] = useState("");
+  const { value: newTel, bind: bindNewTel, reset: resetNewTel } = useInput('')
+  const { value: newUser, bind: bindnewUser, reset: resetNewUser } = useInput('')
 
-  const [searchType, setSearchType] = useState("nameSeach")
-  const [searchWord, setSearchWord] = useState("")
+  const { value: searchTel, bind: bindSearchTel, reset: resetSearchTel } = useInput('')
+  const { value: searchUser, bind: bindSearchUser, reset: resetSearchUser } = useInput('')
 
   // 拉取資料時將程式碼包覆於 useEffect 在 render 之後執行一次
   useEffect(() => {
@@ -86,31 +85,12 @@ const Blacklist = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSeachTel = () => {
+  const handleSearchTel = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
-    console.log(searchType)
-    switch (searchType) {
-
-      case 'nameSeach':
-        const newTelListName = telList.filter((tel) => {
-          return tel.telName.includes(searchWord)
-        })
-        setTelList(newTelListName)
-        console.log('search type is name.');
-        break;
-
-      case 'telSeach':
-        const newTelListTel = telList.filter((tel) => {
-          return tel.tel.includes(searchWord)
-        })
-        setTelList(newTelListTel)
-        console.log('search type is phone.');
-        break;
-
-      default:
-        console.log(`no type.`);
-    }
+    alert("ok")
+    console.log("searchUser", searchUser)
+    console.log("searchTel", searchTel)
   }
 
   const handleFilterTel = (e) => {
@@ -250,42 +230,6 @@ const Blacklist = () => {
   //   // 黑名單變成白名單
   // }
 
-  //   const { value:newTel, bind:bindNewTel, reset:resetNewTel } = useInput('');
-  // const { value:newUser, bind:bindNewUser, reset:resetNewUser  } = useInput('');
-
-  // const getIdInputValue = (e) => {
-
-  //   setNewId(e.target.value);
-  //   console.log(e.target.value)
-  // }
-
-  const { value: newTel, bind: bindNewTel, reset: resetNewTel } = useInput('')
-  const { value: newUser, bind: bindnewUser, reset: resetNewUser } = useInput('')
-
-  // const getUserInputValue = (e) => {
-
-  //   setNewUser(e.target.value);
-  //   console.log(e.target.value)
-  // }
-
-  // const getTelInputValue = (e) => {
-
-  //   setNewTel(e.target.value);
-  //   console.log(e.target.value)
-  // }
-
-  const getSeachWord = (e) => {
-
-    setSearchWord(e.target.value);
-    console.log(e.target.value)
-
-  }
-  const getSeachType = (e) => {
-
-    setSearchType(e.target.value)
-    console.log(searchType)
-  }
-
   const confirmPhone = (phoneNumber) => {
 
     const reg = new RegExp(/^(0\d{1,2})-?(\d{6,7})(#\d+)?$/);
@@ -304,9 +248,9 @@ const Blacklist = () => {
       </header>
 
       <SearchNav
-        getSeachType={getSeachType}
-        getSeachWord={getSeachWord}
-        handleSeachTel={handleSeachTel}
+        bindSearchTel={bindSearchTel}
+        bindSearchUser={bindSearchUser}
+        handleSearchTel={handleSearchTel}
       />
 
       <div className={AddBtn.addWarp}
