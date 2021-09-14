@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import '../css/Header.module.css';
-
 import AddBtn from '../css/AddBtn.module.css';
 
 import SearchNav from "./SearchNav";
 import TableWarp from "./TableWarp";
 
-import { apiAllTel, apiCreateTel, apiDeletedTel } from "../apis/index.js";
+// import { apiAllTel, apiCreateTel, apiDeletedTel } from "../apis/index.js";
 
-import { useInput } from './../hooks/useInput';
-
-
-const TelBlacklist = () => {
+import { useInput } from '../hooks/useInput';
 
 
+const Blacklist = () => {
 
   const data = [
     {
@@ -56,9 +53,9 @@ const TelBlacklist = () => {
   // const [currentTel, setCurrentTel] = useState({})
   // const [updateTel, setUpdateTel] = useState({})
 
-  const [newTel, setNewTel] = useState("");
-  const [newId, setNewId] = useState("");
-  const [newUser, setNewUser] = useState("");
+  // const [newTel, setNewTel] = useState("");
+  // const [newId, setNewId] = useState("");
+  // const [newUser, setNewUser] = useState("");
 
   const [searchType, setSearchType] = useState("nameSeach")
   const [searchWord, setSearchWord] = useState("")
@@ -80,8 +77,6 @@ const TelBlacklist = () => {
     //   }).catch((err) => {
     //     console.log('錯誤:', err);
     // });
-
-
 
     // return data;
     // }
@@ -124,6 +119,7 @@ const TelBlacklist = () => {
     const btnType = currentTarget.name
     console.log(currentTarget)
     console.log(currentTarget.name)
+
     switch (btnType) {
       case "black":
         dataReset()
@@ -184,12 +180,15 @@ const TelBlacklist = () => {
 
     confirmPhone(newTel)
     const newList = [...telList, {
-      telId: newId,
+      telId: "",
       telName: newUser,
       tel: newTel,
     }]
     setIsAdd(false)
     setTelList(newList)
+
+    resetNewTel()
+    resetNewUser()
   }
 
   // const handleUpdateTel = (tel) => {
@@ -234,16 +233,14 @@ const TelBlacklist = () => {
   const handleDeleteTel = (id) => {
     // cell Delete API
     // 使用 id 作為索引
-    apiDeletedTel({ id })
+    // apiDeletedTel({ id })
 
     alert("刪除一筆電話")
-    // const newList = telList.filter((telList) => {
-    //   return telList.telId !== id;
-    // })
-    // console.log(newList)
-    // setTelList(newList)
-
-
+    const newList = telList.filter((telList) => {
+      return telList.telId !== id;
+    })
+    console.log(newList)
+    setTelList(newList)
   }
 
   // const handleChangeType = () => {
@@ -256,22 +253,26 @@ const TelBlacklist = () => {
   //   const { value:newTel, bind:bindNewTel, reset:resetNewTel } = useInput('');
   // const { value:newUser, bind:bindNewUser, reset:resetNewUser  } = useInput('');
 
-  const getIdInputValue = (e) => {
+  // const getIdInputValue = (e) => {
 
-    setNewId(e.target.value);
-    console.log(e.target.value)
-  }
-  const getUserInputValue = (e) => {
+  //   setNewId(e.target.value);
+  //   console.log(e.target.value)
+  // }
 
-    setNewUser(e.target.value);
-    console.log(e.target.value)
-  }
+  const { value: newTel, bind: bindNewTel, reset: resetNewTel } = useInput('')
+  const { value: newUser, bind: bindnewUser, reset: resetNewUser } = useInput('')
 
-  const getTelInputValue = (e) => {
+  // const getUserInputValue = (e) => {
 
-    setNewTel(e.target.value);
-    console.log(e.target.value)
-  }
+  //   setNewUser(e.target.value);
+  //   console.log(e.target.value)
+  // }
+
+  // const getTelInputValue = (e) => {
+
+  //   setNewTel(e.target.value);
+  //   console.log(e.target.value)
+  // }
 
   const getSeachWord = (e) => {
 
@@ -320,9 +321,8 @@ const TelBlacklist = () => {
         <TableWarp
           isAdd={isAdd}
           telList={telList}
-          getIdInputValue={getIdInputValue}
-          getUserInputValue={getUserInputValue}
-          getTelInputValue={getTelInputValue}
+          bindNewTel={bindNewTel}
+          bindnewUser={bindnewUser}
           handleSaveTel={handleSaveTel}
           handleDeleteTel={handleDeleteTel}
           handleFilterTel={handleFilterTel}
@@ -334,4 +334,4 @@ const TelBlacklist = () => {
 };
 
 
-export default TelBlacklist;
+export default Blacklist;

@@ -1,10 +1,10 @@
 import React from "react";
 
-import TelBlacklist from "./TelBlacklist";
+import Blacklist from "./Blacklist";
 
 function App() {
   return (
-    <TelBlacklist />
+    <Blacklist />
   );
 }
 

@@ -5,7 +5,7 @@
 可以**搜尋電話或姓名**，使用**頁籤（全部、黑名單、白名單）篩選**查閱的電話清單。
 
 ## React Component 架構
-- 父層：《TelBlacklist》
+- 父層：《Blacklist》
   - 〈SearchNav〉
   - 〈TableWarp〉
 > Component 架構還有重構空間，有需求再做調整。
