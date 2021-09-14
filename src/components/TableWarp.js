@@ -28,7 +28,7 @@ const SmileSvg = () => {
 }
 
 const TableWarp = (props) => {
-  
+
   return (
     <>
       <div className="table-warp">
@@ -52,8 +52,8 @@ const TableWarp = (props) => {
           {(props.isAdd ? <div className={FloatInput.isAddWrap}>
             <div className="row card">
               <div className={FloatInput.isAddItme}><input type="text" disabled placeholder="預設項次(不用填)" /></div>
-              <div className={FloatInput.isAddItme}><input {...props.bindNewTel} type="text" placeholder="輸入名字" /></div>
-              <div className={FloatInput.isAddItme}><input {...props.bindnewUser} type="text" placeholder="輸入電話" /></div>
+              <div className={FloatInput.isAddItme}><input {...props.bindnewUser} type="text" placeholder="輸入名字" /></div>
+              <div className={FloatInput.isAddItme}><input {...props.bindNewTel} type="text" placeholder="輸入電話" /></div>
               <div className={FloatInput.isAddItme}>
                 <div className={FloatInput.isAddSure}
                   onClick={() => props.handleSaveTel()}><i>確定</i></div>

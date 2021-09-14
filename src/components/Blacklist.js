@@ -89,12 +89,10 @@ const Blacklist = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
     // cell seach api
-    const newList = [getTelSearchList(searchTel)[0], getUserSearchList(searchUser)[0]]
+    const newList = (searchTel || searchUser) ? [getTelSearchList(searchTel)[0], getUserSearchList(searchUser)[0]] : telList
     setTelList(newList)
-    console.log(telList)
     resetSearchTel()
     resetSearchUser()
-
   }
 
   const getTelSearchList = (searchTel = "") => {
@@ -152,11 +150,7 @@ const Blacklist = () => {
   const handleCreateTel = () => {
     // 新增一筆電話
     // IsAdd === true 時 input會出現
-    if (isAdd) {
-      setIsAdd(false)
-    } else {
-      setIsAdd(true)
-    }
+    isAdd ? setIsAdd(false) : setIsAdd(true)
   }
 
   const handleSaveTel = () => {
@@ -175,6 +169,10 @@ const Blacklist = () => {
     //     phone: 'test'
     //   }
     // })
+    if (newTel === "" || newUser === "") {
+      alert('請輸入內容')
+      return 
+    }
 
     confirmPhone(newTel)
     const newList = [...telList, {
