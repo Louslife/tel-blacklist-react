@@ -90,8 +90,8 @@ const Blacklist = () => {
     // 點選外框之後送出搜尋
     // cell seach api
     const newList = [getTelSearchList(searchTel)[0], getUserSearchList(searchUser)[0]]
-
-    console.log(newList)
+    setTelList(newList)
+    console.log(telList)
     resetSearchTel()
     resetSearchUser()
 
