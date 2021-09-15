@@ -103,32 +103,54 @@ const Blacklist = () => {
     // 搜尋功能
     // 點選外框之後送出搜尋
     // cell seach api
-    // const newList
     if (searchTel || searchUser) {
-      const newList = [
-        getTelSearchList(searchTel)[0],
-        getUserSearchList(searchUser)[0],
-      ];
+      const searchTelList =
+        getTelSearchList(searchTel)[0] !== undefined || null
+          ? getTelSearchList(searchTel)[0]
+          : [];
+      const UserSearchList =
+        getUserSearchList(searchUser)[0] !== undefined || null
+          ? getUserSearchList(searchUser)[0]
+          : [];
+      console.log(
+        "searchTelList",
+        searchTelList,
+        "UserSearchList",
+        UserSearchList
+      );
+      const newList = Array.from(
+        new Set([searchTelList, UserSearchList])
+      ).filter(String);
       resetSearchTel();
       resetSearchUser();
-      return newList;
+      console.log(newList);
+      setTelList(newList);
     } else {
       alert("請輸入關鍵字");
-      const newList = telList;
-      return newList;
+      const newList = data;
+      setTelList(newList);
     }
   };
 
   const getTelSearchList = (searchTel = "") => {
-    return telList.filter(
-      (tel) => tel.tel.toLowerCase().indexOf(searchTel.toLowerCase()) > -1
-    );
+    if (searchTel) {
+      return telList.filter(
+        (tel) => tel.tel.toLowerCase().indexOf(searchTel.toLowerCase()) > -1
+      );
+    } else {
+      return "";
+    }
   };
 
   const getUserSearchList = (searchUser = "") => {
-    return telList.filter(
-      (tel) => tel.telName.toLowerCase().indexOf(searchUser.toLowerCase()) > -1
-    );
+    if (searchUser) {
+      return telList.filter(
+        (tel) =>
+          tel.telName.toLowerCase().indexOf(searchUser.toLowerCase()) > -1
+      );
+    } else {
+      return "";
+    }
   };
 
   const handleFilterTel = (e) => {
